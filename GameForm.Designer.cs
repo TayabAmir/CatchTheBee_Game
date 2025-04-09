@@ -108,6 +108,7 @@
             this.Controls.Add(this.labelBestScore);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GameForm";
             this.Text = "GameForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
