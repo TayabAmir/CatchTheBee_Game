@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Catch_The_Bee.Properties;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Catch_The_Bee.Movement;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Runtime.Remoting.Messaging;
 
 namespace Catch_The_Bee
 {
@@ -15,40 +12,89 @@ namespace Catch_The_Bee
     {
         int score = 0;
         int bestScore = 39;
-        float time = 10;
-        float maxTime = 60.0f;
+        float time = 60.0f;
+        int level = 1;
+
+        List<Bee> bees;
 
         public GameForm()
         {
             InitializeComponent();
+            bees = new List<Bee>();
 
+            labelScore.Text = "Score: " + score;
+            labelBestScore.Text = "Best Score: " + bestScore;
+            labelTime.Text = $"Time: {time:0.0} / 60.0";
+            labelLevel.Text = "Level: " + level;
+
+            timer1.Interval = 100;
             timer1.Tick += timer1_Tick;
-
-            timer1.Interval = 100; 
-            timer1.Enabled = true;
             timer1.Start();
 
-            labelScore.Text = "Score: " + score.ToString();
-            labelBestScore.Text = "Best Score: " + bestScore.ToString();
-            labelTime.Text = $"Time: {time:0.0} / {maxTime:0.0}";
+            AddBee();
         }
 
+        private void AddBee()
+        {
+            var bee = new Bee(Resources.beeUp, 100, 100,
+                              new Horizontal(20, new Point(this.Width, this.Height), "right"));
+
+            bee.Clicked += (s, e) =>
+            {
+                score++;
+                labelScore.Text = "Score: " + score;
+
+                this.Controls.Remove(bee.GetPictureBox());
+                bees.Remove(bee);
+            };
+
+            bees.Add(bee);
+            this.Controls.Add(bee.GetPictureBox());
+            bee.GetPictureBox().BringToFront();
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             time -= 0.1f;
-
-            if (time <= 0.0f)
+            if (time <= 0)
             {
-                time = 0.0f;
-                timer1.Stop();
-                MessageBox.Show("Time's up!");
+                time = 0;
+                EndGame("Time's up!");
+            }
+            labelTime.Text = $"Time: {time:0.0} / 60.0";
+            MoveBees();
+        }
+        private void Bee_Click(object sender, EventArgs e)
+        {
+            score++;
+            labelScore.Text = "Score: " + score;
+        }
+        private void MoveBees()
+        {
+            var beesToRemove = new List<Bee>();
+
+            foreach (var bee in bees)
+            {
+                bee.update();
+
+                if (bee.IsOutOfBounds(this.Width, this.Height))
+                {
+                    timer1.Stop();
+                    MessageBox.Show($"Game Over!! Failed to Catch Bee\nFinal Score: {score}\nLevel Reached: {level}");
+                    beesToRemove.Add(bee);
+                }
             }
 
-            labelTime.Text = $"Time: {time:0.0} / {maxTime:0.0}";
+            foreach (var b in beesToRemove)
+            {
+                this.Controls.Remove(b.GetPictureBox());
+                bees.Remove(b);
+            }
         }
-        private void label1_Click(object sender, EventArgs e)
+        private void EndGame(string message)
         {
-
+            timer1.Stop();
+            MessageBox.Show(message + $"\nFinal Score: {score}\nLevel Reached: {level}");
+            this.Close();
         }
     }
 }

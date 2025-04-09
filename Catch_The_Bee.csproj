@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Bee.cs" />
     <Compile Include="HomePage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +59,9 @@
     <Compile Include="GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Movement\Horizontal.cs" />
+    <Compile Include="Movement\IMovement.cs" />
+    <Compile Include="Movement\Vertical.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameForm.resx">
@@ -98,6 +102,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\header.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeUp.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeDown.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeDown1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeLeft1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeRight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beeLeft.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
