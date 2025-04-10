@@ -44,5 +44,22 @@ namespace Catch_The_Bee
             this.Controls.Add(startButton);
 
         }
+
+        private void buttonCross_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to exit the application?",
+                "Confirm Exit",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
     }
 }

@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Movement\Horizontal.cs" />
     <Compile Include="Movement\IMovement.cs" />
+    <Compile Include="Movement\RandomMovement.cs" />
     <Compile Include="Movement\Vertical.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

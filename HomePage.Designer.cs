@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCross = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,15 +45,31 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // buttonCross
+            // 
+            this.buttonCross.BackColor = System.Drawing.Color.Red;
+            this.buttonCross.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCross.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCross.ForeColor = System.Drawing.Color.ForestGreen;
+            this.buttonCross.Location = new System.Drawing.Point(868, 1);
+            this.buttonCross.Name = "buttonCross";
+            this.buttonCross.Size = new System.Drawing.Size(79, 35);
+            this.buttonCross.TabIndex = 1;
+            this.buttonCross.Text = "X";
+            this.buttonCross.UseVisualStyleBackColor = false;
+            this.buttonCross.Click += new System.EventHandler(this.buttonCross_Click);
+            // 
+            // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Catch_The_Bee.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(917, 541);
+            this.ClientSize = new System.Drawing.Size(945, 552);
+            this.Controls.Add(this.buttonCross);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "HomePage";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -62,6 +79,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonCross;
     }
 }
 
