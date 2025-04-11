@@ -14,6 +14,7 @@ namespace Catch_The_Bee
 {
     public partial class GameForm : Form
     {
+        private bool isStoppingMusic = false;
         private readonly string saveFilePath = "game_data.txt";
         Label labelScore;
         Label labelBestScore;
@@ -26,7 +27,7 @@ namespace Catch_The_Bee
         int totalScore = 0;
 
         int bestScore = 0;
-        float time = 60.0f;
+        float time = 3.0f;
         int level = 1;
 
         List<Bee> bees;
@@ -35,7 +36,7 @@ namespace Catch_The_Bee
         {
             InitializeComponent();
             this.BackColor = Color.White;
-            StartBackgroundMusic(); 
+            StartBackgroundMusic();
             bees = new List<Bee>();
 
             LoadGameData();
@@ -69,14 +70,19 @@ namespace Catch_The_Bee
             gameMusicReader = new AudioFileReader("Game.mp3");
             gameMusicPlayer = new WaveOutEvent();
             gameMusicPlayer.Init(gameMusicReader);
+            gameMusicPlayer.PlaybackStopped += OnMusicStopped;
             gameMusicPlayer.Play();
-
-            gameMusicReader.Position = 0;
-            gameMusicPlayer.PlaybackStopped += (s, e) => {
-                gameMusicReader.Position = 0;
-                gameMusicPlayer.Play(); 
-            };
         }
+
+        private void OnMusicStopped(object sender, StoppedEventArgs e)
+        {
+            if (gameMusicReader != null && gameMusicPlayer != null)
+            {
+                gameMusicReader.Position = 0;
+                gameMusicPlayer.Play();
+            }
+        }
+
 
         private void PlayCatchBeeSound()
         {
@@ -85,7 +91,8 @@ namespace Catch_The_Bee
             catchBeePlayer.Init(catchBeeReader);
             catchBeePlayer.Play();
 
-            catchBeePlayer.PlaybackStopped += (s, e) => {
+            catchBeePlayer.PlaybackStopped += (s, e) =>
+            {
                 catchBeePlayer.Dispose();
                 catchBeeReader.Dispose();
             };
@@ -93,9 +100,12 @@ namespace Catch_The_Bee
 
         private void SaveGameData()
         {
+            if(totalScore <= bestScore)
+            {
+                return;
+            }
             try
             {
-
                 File.WriteAllText(saveFilePath, $"{totalScore}\n{level}");
             }
             catch (Exception ex)
@@ -104,7 +114,79 @@ namespace Catch_The_Bee
             }
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            time -= 0.1f;
+            if (time <= 0)
+            {
+                time = 0;
+                totalScore += score;
+                EndGame("Time's up!");
+            }
+            labelTime.Text = $"Time: {time:0.0} / 60.0";
 
+            if (level >= 6)
+            {
+                while (bees.Count < 3)
+                {
+                    SpawnRandomBee();
+                }
+            }
+
+            if (score >= 30)
+            {
+                timer1.Stop();
+                gameMusicPlayer?.Pause();
+                new SoundPlayer(Resources.NextLevelMusic).Play();
+
+                if (level == 10)
+                {
+                    totalScore += score;
+                    EndGame("You have completed all levels!");
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show(
+                    $"Congratulations! Level {level} Completed. Press OK to start Level {level + 1}",
+                    "Level Completion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button2
+                );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        level++;
+                        totalScore += score;
+                        score = 0;
+                        time = 60.0f;
+                        labelScore.Text = "Score: " + score;
+                        labelLevel.Text = "Level: " + level;
+                        foreach (var bee in bees)
+                        {
+                            this.Controls.Remove(bee.GetPictureBox());
+                        }
+                        bees.Clear();
+                        if (level <= 6)
+                            SpawnRandomBee();
+                        gameMusicPlayer?.Play();
+                        timer1.Start();
+                    }
+                    else
+                    {
+                        timer1.Stop();
+                        totalScore += score;
+                        SaveGameData();
+                        this.Hide();
+                        HomePage homePage = new HomePage();
+                        homePage.ShowDialog();
+                    }
+                }
+
+
+            }
+            MoveBees();
+        }
         private void createHeader()
         {
             PictureBox header = new PictureBox();
@@ -202,7 +284,7 @@ namespace Catch_The_Bee
 
         private Image GetImage(string direction)
         {
-            if(level >= 6)
+            if (level >= 6)
             {
                 if (level - 5 == 1)
                     return Resources.beeUpYellow;
@@ -211,15 +293,15 @@ namespace Catch_The_Bee
                 if (level - 5 == 3)
                     return Resources.beeUpRed;
                 if (level - 5 == 4)
-                    return  Resources.beeUpBlue;
+                    return Resources.beeUpBlue;
                 if (level - 5 == 5)
                     return Resources.beeUpPurple;
             }
-            if(direction == "left")
+            if (direction == "left")
             {
                 if (level == 1)
                     return Resources.beeLeftYellow;
-                if(level == 2)
+                if (level == 2)
                     return Resources.beeLeftGreen;
                 if (level == 3)
                     return Resources.beeLeftRed;
@@ -227,7 +309,9 @@ namespace Catch_The_Bee
                     return Resources.beeLeftBlue;
                 if (level == 5)
                     return Resources.beeLeftPurple;
-            } else if(direction == "right") {
+            }
+            else if (direction == "right")
+            {
                 if (level == 1)
                     return Resources.beeRightYellow;
                 if (level == 2)
@@ -238,7 +322,8 @@ namespace Catch_The_Bee
                     return Resources.beeRightBlue;
                 if (level == 5)
                     return Resources.beeRightPurple;
-            } else if(direction == "up")
+            }
+            else if (direction == "up")
             {
                 if (level == 1)
                     return Resources.beeUpYellow;
@@ -251,7 +336,8 @@ namespace Catch_The_Bee
                 if (level == 5)
                     return Resources.beeUpPurple;
 
-            } else if(direction == "down")
+            }
+            else if (direction == "down")
             {
                 if (level % 5 == 1)
                     return Resources.beeDownYellow;
@@ -264,7 +350,7 @@ namespace Catch_The_Bee
                 if (level % 5 == 0)
                     return Resources.beeDownPurple;
             }
-                return null;
+            return null;
         }
         private void SpawnRandomBee()
         {
@@ -321,7 +407,7 @@ namespace Catch_The_Bee
 
             bee.Clicked += (s, e) =>
             {
-                PlayCatchBeeSound(); 
+                PlayCatchBeeSound();
                 score += 3;
                 labelScore.Text = "Score: " + score;
 
@@ -336,83 +422,23 @@ namespace Catch_The_Bee
             bee.GetPictureBox().SendToBack();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            time -= 0.1f;
-            if (time <= 0)
-            {
-                time = 0;
-                totalScore += score;
-                EndGame("Time's up!");
-            }
-            labelTime.Text = $"Time: {time:0.0} / 60.0";
-
-            if (level >= 6)
-            {
-                while (bees.Count < 3)
-                {
-                    SpawnRandomBee();
-                }
-            }
-
-            if (score >= 30)
-            {
-                timer1.Stop();
-                gameMusicPlayer?.Pause();
-                new SoundPlayer(Resources.NextLevelMusic).Play();
-
-                if(level == 10)
-                {
-                    totalScore += score;
-                    EndGame("You have completed all levels!");
-                } else
-                {
-                    DialogResult result = MessageBox.Show(
-                    $"Congratulations! Level {level} Completed. Press OK to start Level {level + 1}",
-                    "Level Completion",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button2
-                );
-
-                    if (result == DialogResult.Yes)
-                    {
-                        level++;
-                        totalScore += score;
-                        score = 0;
-                        time = 60.0f;
-                        labelScore.Text = "Score: " + score;
-                        labelLevel.Text = "Level: " + level;
-                        foreach (var bee in bees)
-                        {
-                            this.Controls.Remove(bee.GetPictureBox());
-                        }
-                        bees.Clear();
-                        if (level <= 6)
-                            SpawnRandomBee();
-                        gameMusicPlayer?.Play();
-                        timer1.Start();
-                    }
-                    else
-                    {
-                        timer1.Stop();
-                        SaveGameData();
-                        this.Hide();
-                        HomePage homePage = new HomePage();
-                        homePage.ShowDialog();
-                    }
-                }
-
-                
-            }
-            MoveBees();
-        }
         private void StopBackgroundMusic()
         {
-            gameMusicPlayer?.Stop();
-            gameMusicPlayer?.Dispose();
-            gameMusicReader?.Dispose();
+            if (gameMusicPlayer != null)
+            {
+                gameMusicPlayer.PlaybackStopped -= OnMusicStopped; 
+                gameMusicPlayer.Stop();
+                gameMusicPlayer.Dispose();
+                gameMusicPlayer = null;
+            }
+
+            if (gameMusicReader != null)
+            {
+                gameMusicReader.Dispose();
+                gameMusicReader = null;
+            }
         }
+
         private void MoveBees()
         {
             List<Bee> beesToRemove = new List<Bee>();
@@ -439,9 +465,23 @@ namespace Catch_The_Bee
         private void EndGame(string message)
         {
             timer1.Stop();
+            StopBackgroundMusic();
             SaveGameData();
-            MessageBox.Show(message + $"\nFinal Score: {totalScore}\nLevel Reached: {level}");
-            this.Close();
+            string formattedMessage =
+                $"{message}\n\n" +
+                $"🎯 Final Score: {totalScore}\n" +
+                $"🏆 Level Reached: {level}";
+
+            MessageBox.Show(
+                formattedMessage,
+                "🎉 Game Over!", 
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+            this.Hide();
+
+            Form form = new HomePage();
+            form.ShowDialog();
         }
     }
 }
