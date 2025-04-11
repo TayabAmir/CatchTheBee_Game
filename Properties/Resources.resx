@@ -118,16 +118,85 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bee.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="beeDownBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeDownBlue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeDownGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeDownGreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeDownPurple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeDownPurple.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeDownRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeDownRed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeDownYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeDown.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeLeftBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeLeftBlue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeLeftGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeLeftGreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeLeftPurple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeLeftPurple.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeLeftRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeLeftRed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeLeftYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeRight.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeRightBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeRightBlue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeRightGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeRightGreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeRightPurple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeRightPurple.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeRightRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeRightRed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeRightYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeLeft.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="beeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\beeUp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="beeUpBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeUpBlue.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeUpGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeUpGreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeUpPurple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeUpPurple.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeUpRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beeUpRed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="beeUpYellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bee (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CatchBeeMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\video-game-bonus-323603.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GamePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\i-love-my-8-bit-game-console-301272.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\header.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HomeMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sakura-Girl-Daisy-chosic.com_.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NextLevelMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\video-game-whoosh-sound-effect-320172.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

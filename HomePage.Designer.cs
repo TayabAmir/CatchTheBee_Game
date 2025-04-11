@@ -37,7 +37,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::Catch_The_Bee.Properties.Resources.bg;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::Catch_The_Bee.Properties.Resources.bee;
+            this.pictureBox1.Image = global::Catch_The_Bee.Properties.Resources.beeUp;
             this.pictureBox1.Location = new System.Drawing.Point(514, 170);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(179, 137);

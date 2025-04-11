@@ -8,16 +8,20 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+using Catch_The_Bee.Properties;
 
 namespace Catch_The_Bee
 {
     public partial class HomePage : Form
     {
+        SoundPlayer homeMusicPlayer;
         public HomePage()
         {
             InitializeComponent();
             this.Text = "Garden: Catch Bees";
-
+            homeMusicPlayer = new SoundPlayer(Resources.GamePlay);
+            homeMusicPlayer.PlayLooping();
             Label title = new Label();
             title.Text = "Garden: Catch Bees";
             title.Font = new Font("Comic Sans MS", 36, FontStyle.Bold);
@@ -36,6 +40,7 @@ namespace Catch_The_Bee
             startButton.Cursor = Cursors.Hand;
             startButton.Click += new EventHandler((sender, e) =>
             {
+                homeMusicPlayer.Stop(); 
                 this.Hide();
                 GameForm gameForm = new GameForm();
                 gameForm.ShowDialog();
