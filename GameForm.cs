@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using Catch_The_Bee.Movement;
 using System.Windows.Forms;
-using System.Runtime.Remoting.Messaging;
 using System.Linq;
 using System.Media;
 using NAudio.Wave;
@@ -27,7 +26,7 @@ namespace Catch_The_Bee
         int totalScore = 0;
 
         int bestScore = 0;
-        float time = 3.0f;
+        float time = 60.0f;
         int level = 1;
 
         List<Bee> bees;
@@ -190,7 +189,7 @@ namespace Catch_The_Bee
         private void createHeader()
         {
             PictureBox header = new PictureBox();
-            header.Width = this.ClientSize.Width;
+            header.Width = Screen.PrimaryScreen.Bounds.Width;
             header.Height = 123;
             header.Top = 0;
             header.Left = 0;
@@ -225,7 +224,7 @@ namespace Catch_The_Bee
             labelTime.Font = labelFont;
             labelTime.ForeColor = Color.Black;
             labelTime.BackColor = Color.Transparent;
-            labelTime.Left = 850;
+            labelTime.Left = 900;
             labelTime.Top = 44;
             labelTime.AutoSize = true;
 
@@ -234,7 +233,7 @@ namespace Catch_The_Bee
             labelLevel.Font = labelFont;
             labelLevel.ForeColor = Color.Black;
             labelLevel.BackColor = Color.Transparent;
-            labelLevel.Left = 1220;
+            labelLevel.Left = 1300;
             labelLevel.Top = 44;
             labelLevel.AutoSize = true;
 

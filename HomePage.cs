@@ -20,6 +20,7 @@ namespace Catch_The_Bee
         {
             InitializeComponent();
             this.Text = "Garden: Catch Bees";
+            this.CenterToScreen();
             homeMusicPlayer = new SoundPlayer(Resources.GamePlay);
             homeMusicPlayer.PlayLooping();
             Label title = new Label();
